@@ -1,0 +1,22 @@
+import useSWR from "swr";
+import { TableBlog } from "../components/table/table";
+import { IBlog } from "../components/table/type";
+
+const BlogsPage = () => {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, isLoading } = useSWR("http://localhost:8000/blogs", fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+  if (isLoading) {
+    return <div>...loading</div>;
+  }
+  return (
+    <div>
+      <TableBlog blogs={(data as IBlog[])?.sort((a, b) => a.id - b.id)} />
+    </div>
+  );
+};
+
+export default BlogsPage;
