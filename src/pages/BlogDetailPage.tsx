@@ -37,7 +37,7 @@ const BlogDetailPage = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res) {
-          mutate("${import.meta.env.VITE_SERVER}/blogs");
+          mutate(`${import.meta.env.VITE_SERVER}/blogs`);
           setComment("");
           setDataComment(res.comment);
         } else {

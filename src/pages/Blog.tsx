@@ -5,12 +5,12 @@ import { IBlog } from "../components/table/type";
 const BlogsPage = () => {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data, isLoading } = useSWR(
-    "${import.meta.env.VITE_SERVER}/blogs",
+    `${import.meta.env.VITE_SERVER}/blogs`,
     fetcher,
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
-      revalidateOnReconnect: false,
+      revalidateOnReconnect: true,
     }
   );
   if (isLoading) {

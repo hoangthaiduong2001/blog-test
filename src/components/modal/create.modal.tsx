@@ -29,7 +29,7 @@ export const CreateModal = (props: IPropsCreateModal) => {
       toast.warning("Please check content");
       return;
     }
-    fetch("${import.meta.env.VITE_SERVER}/blogs", {
+    fetch(`${import.meta.env.VITE_SERVER}/blogs`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -42,7 +42,7 @@ export const CreateModal = (props: IPropsCreateModal) => {
         if (res) {
           toast.success("success");
           handleClose();
-          mutate("${import.meta.env.VITE_SERVER}/blogs");
+          mutate(`${import.meta.env.VITE_SERVER}/blogs`);
         } else {
           toast.error("error");
         }

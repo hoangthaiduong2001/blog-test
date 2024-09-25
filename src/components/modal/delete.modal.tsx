@@ -27,7 +27,7 @@ export const ModalDelete = (props: IPropsDeleteModal) => {
         if (res) {
           toast.success("success");
           handleClose();
-          mutate("${import.meta.env.VITE_SERVER}/blogs");
+          mutate(`${import.meta.env.VITE_SERVER}/blogs`);
         } else {
           toast.error("error");
         }

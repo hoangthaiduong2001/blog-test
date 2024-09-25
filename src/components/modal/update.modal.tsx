@@ -51,7 +51,7 @@ export const UpdateModal = (props: IPropsUpdateModal) => {
         if (res) {
           toast.success("success");
           handleClose();
-          mutate("${import.meta.env.VITE_SERVER}/blogs");
+          mutate(`${import.meta.env.VITE_SERVER}/blogs`);
           console.log(res);
         } else {
           toast.error("error");
