@@ -14,7 +14,7 @@ export const ModalDelete = (props: IPropsDeleteModal) => {
   };
 
   const handleDelete = () => {
-    fetch(`http://localhost:8000/blogs/${id}`, {
+    fetch(`${import.meta.env.VITE_SERVER}/blogs/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -27,7 +27,7 @@ export const ModalDelete = (props: IPropsDeleteModal) => {
         if (res) {
           toast.success("success");
           handleClose();
-          mutate("http://localhost:8000/blogs");
+          mutate("${import.meta.env.VITE_SERVER}/blogs");
         } else {
           toast.error("error");
         }

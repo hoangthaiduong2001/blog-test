@@ -4,11 +4,15 @@ import { IBlog } from "../components/table/type";
 
 const BlogsPage = () => {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data, isLoading } = useSWR("http://localhost:8000/blogs", fetcher, {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  });
+  const { data, isLoading } = useSWR(
+    "${import.meta.env.VITE_SERVER}/blogs",
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
   if (isLoading) {
     return <div>...loading</div>;
   }

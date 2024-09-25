@@ -38,7 +38,7 @@ export const UpdateModal = (props: IPropsUpdateModal) => {
       toast.warning("Please check content");
       return;
     }
-    fetch(`http://localhost:8000/blogs/${id}`, {
+    fetch(`${import.meta.env.VITE_SERVER}/blogs/${id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -51,7 +51,7 @@ export const UpdateModal = (props: IPropsUpdateModal) => {
         if (res) {
           toast.success("success");
           handleClose();
-          mutate("http://localhost:8000/blogs");
+          mutate("${import.meta.env.VITE_SERVER}/blogs");
           console.log(res);
         } else {
           toast.error("error");

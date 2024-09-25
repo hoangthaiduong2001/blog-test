@@ -11,9 +11,13 @@ const BlogDetailPage = () => {
   const [dataComment, setDataComment] = useState<string[]>([]);
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data } = useSWR(`http://localhost:8000/blogs/${params.id}`, fetcher, {
-    revalidateOnReconnect: true,
-  });
+  const { data } = useSWR(
+    `${import.meta.env.VITE_SERVER}/blogs/${params.id}`,
+    fetcher,
+    {
+      revalidateOnReconnect: true,
+    }
+  );
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -22,7 +26,7 @@ const BlogDetailPage = () => {
       return;
     }
 
-    fetch(`http://localhost:8000/blogs/${params.id}`, {
+    fetch(`${import.meta.env.VITE_SERVER}/blogs/${params.id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -33,7 +37,7 @@ const BlogDetailPage = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res) {
-          mutate("http://localhost:8000/blogs");
+          mutate("${import.meta.env.VITE_SERVER}/blogs");
           setComment("");
           setDataComment(res.comment);
         } else {
